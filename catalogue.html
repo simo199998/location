@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>catalogue</title>
+            <link rel="stylesheet" href="css/bootstrap.min.css">
+            <link rel="stylesheet" href="css/carousel.css">
+            <link rel="stylesheet" href="css/all.min.css">
+            <link rel="stylesheet" href="css/style.css">
+            
+            <link rel="stylesheet" href="assets/owlcarousel/assets/owl.carousel.min.css">
+            <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
+            <script src="assets/vendors/jquery.min.js"></script>
+            <script src="assets/owlcarousel/owl.carousel.js"></script>
+    <!--Stylesheet-->
+    <style>
+            html,body {
+  height:100%;
+  min-height:100%;
+  margin:0;
+  width: 100%;
+}
+body {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-image:url(https://images.unsplash.com/photo-1499088513455-78ed88b7a5b4?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ3MzM&ixlib=rb-4.0.3&q=85);
+  background-size:cover;
+}
+.thumbs {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  width:100%;
+  height: 100%;
+  
+  > a {
+    max-width:150px;
+    height:150px;
+    margin:10px;
+    overflow:hidden;
+    border-radius:5px;
+    box-shadow:0 0 0 3px white, 0 5px 8px 3px rgba(black, 0.6);
+    img {
+      transform:scale(1);
+      transition:transform 0.1s ease-in-out;
+      filter:grayscale(50%);
+      min-width:100%;
+      min-height:100%;
+      max-width:100%;
+      max-height:100%;
+    }
+    &:hover {
+      img {
+        transform:scale(1.1);
+        filter:grayscale(0%);
+      }
+    }
+  }
+}
+
+.lightbox {
+  position:fixed;
+  background:rgba(black,0.5);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  height:100%;
+  width:100%;
+  left:0;
+  top:0;
+  transform:translateY(-100%);
+  opacity:0;
+  transition:opacity 0.5s ease-in-out;
+  &:has(div:target) {
+    transform:translateY(0%);
+    opacity:1;
+  }
+  a.nav {
+    text-decoration:none;
+    /*color:white;*/
+    font-size:40px;
+    /*text-shadow:0 2px 2px rgba(black,0.8);*/
+    opacity:0.5;
+    font-weight:200;
+    
+  }
+  .target {
+    position:absolute;
+    
+    height:100%;
+    width:100%;
+    display:flex;
+    transform:scale(0);
+    align-items:center;
+    justify-content:space-between;
+    *:first-child,*:last-child {
+      flex:0 0 100px;
+      text-align:center;
+      @media all and (max-width:600px){
+        flex:0 0 50px;
+      }
+    }
+    .content {
+      transform:scale(0.9);
+      background-color:#0A1828;
+      color: white;
+      opacity:0;
+      flex:1 1 auto;
+      align-self: center;
+      max-height:100%;
+      min-height:0;
+      
+      min-width:0;
+      border-radius:5px;
+      overflow:hidden;
+      box-shadow:0 0 0 3px white, 0 5px 8px 3px rgba(black, 0.6);
+      transition:transform 0.25s ease-in-out,opacity 0.25s ease-in-out;
+      img {
+        min-width:0%;
+        min-height:0%;
+        max-width:50%;
+        max-height:calc(100vh - 150px);
+        display:block;
+        margin:0;
+      }
+    }
+    .form-control-plaintext{color: white;}
+    &:target {
+      transform:scale(1);
+      .content {
+        
+        opacity:1;
+      }
+    }
+  }
+  .close {
+    position:absolute;
+    right:10px;
+    top:10px;
+  }
+}
+.classdispooui{
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  animation-name: dispooui;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.classdisponon{
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  animation-name: disponon;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+@keyframes disponon{0%{background-color: red;} 100%{color: red;}}
+@keyframes dispooui{0%{background-color: green;} 100%{color: green;}}
+
+    </style>
+ 
+    
+<body>
+            <div class="thumbs">
+                       
+                        <a href="#target1"><img src='https://images.unsplash.com/photo-1680925723180-ff3cb559c9b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
+                        
+
+            </div>
+            
+            <div class="lightbox" data-bs-toggle="modal">
+                        
+                        <div class="target" id="target1">
+                          
+                                    <div class=" content">
+                                      <div class="clearfix" style="padding-top: 5px;">
+                                        <img src="https://images.unsplash.com/photo-1680925723180-ff3cb559c9b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400" class="col-md-6 float-md-start mb-4 ms-md-4" alt="..." >
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticmarque" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Marque:</label>
+                                                    <div class="col-sm-7">
+                                                                <input type="text" readonly class="form-control-plaintext" id="staticmarque" value="mercides" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px; padding: 0px;">
+                                                    <label for="statictype" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Type:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="statictype" value="class A" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticmodel" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Model:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticmodel" value="2024" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticvitesse" class="col-sm-4 col-form-label " style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >La boite:</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="text" readonly class="form-control-plaintext " id="staticEvitesse" value="automatique" style="padding-top: 0px; padding-bottom: 0px; width: 100px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticmatricule" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Matricule:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticmatricule" value="1/A/2325" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticenergie" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Energie:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticenergie" value="gasoil" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticplace" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Places:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticplace" value="six" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticdispo" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >disponible:</label>
+                                                    <div class="col-sm-7" style=" margin-top: 0px">
+                                                    <input type="text" readonly class="form-control-plaintext staticdispo "  value="non" style="padding-top: 0px; padding-bottom: 0px; ">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticlibre" class="col-sm-5 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px;" >Libre le:</label>
+                                                    <div class="col-sm-7" style=" margin-top: 0px">
+                                                    <input type="text" readonly class="form-control-plaintext staticlibre" value="" style="padding-top: 0px; padding-bottom: 0px; ">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-4 row w-100% position-relative" style=" left: 30px;">
+                                                    <button class="btn btn-primary w-100%" id="btn-dispo">reservee</button>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <a href="#target2" class="carousel-control-next-icon" aria-hidden="true" title="next"></a>
+                        </div>
+                        <div class="target" id="target2">
+                                    <a href="#target1" class="carousel-control-prev-icon" aria-hidden="true" title="previous"></a>
+                                    <div class="content">
+                                      <div class="clearfix" style="padding-top: 5px;">
+                                        <img src="https://images.unsplash.com/photo-1680925723180-ff3cb559c9b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400" class="col-md-6 float-md-start mb-4 ms-md-4" alt="..." >
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticmarque" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Marque:</label>
+                                                    <div class="col-sm-7">
+                                                                <input type="text" readonly class="form-control-plaintext" id="staticmarque" value="mercides" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px; padding: 0px;">
+                                                    <label for="statictype" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Type:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="statictype" value="class A" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticmodel" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Model:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticmodel" value="2024" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticvitesse" class="col-sm-4 col-form-label " style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >La boite:</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="text" readonly class="form-control-plaintext " id="staticEvitesse" value="automatique" style="padding-top: 0px; padding-bottom: 0px; width: 100px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticmatricule" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Matricule:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticmatricule" value="1/A/2325" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticenergie" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Energie:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticenergie" value="gasoil" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticplace" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >Places:</label>
+                                                    <div class="col-sm-7">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticplace" value="six" style="padding-top: 0px; padding-bottom: 0px;">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticdispo" class="col-sm-4 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px" >disponible:</label>
+                                                    <div class="col-sm-7" style=" margin-top: 0px">
+                                                    <input type="text" readonly class="form-control-plaintext staticdispo" id="" value="oui" style="padding-top: 0px; padding-bottom: 0px; ">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                                    <label for="staticlibre" class="col-sm-5 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px;" >Libre le:</label>
+                                                    <div class="col-sm-7" style=" margin-top: 0px">
+                                                    <input type="text" readonly class="form-control-plaintext staticlibre " id="" value="o" style="padding-top: 0px; padding-bottom: 0px; ">
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 row" style="margin-left: 40px;">
+                                          <label for="prix" class="col-sm-5 col-form-label" style="font-size: 18px; font-weight: bold; padding-top: 0px; padding-bottom: 0px; margin-left: 30px;" >prix:</label>
+                                          <div class="col-sm-7" style=" margin-top: 0px">
+                                          <input type="text" readonly class="form-control-plaintext staticlibre " id="prix" value="700" style="padding-top: 0px; padding-bottom: 0px; ">
+                                          </div>
+                                        </div>
+                                        <div class="mb-4 row w-100% position-relative" style=" left: 700px;">
+                                                    <button class="btn btn-primary w-100%" id="btn-dispo">reservee</button>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <a href="#target3" class="carousel-control-next-icon" aria-hidden="true" title="next"></a>
+                        </div>
+                        
+            
+
+
+
+
+
+
+
+
+
+
+            <script>
+              
+                        let dispo=document.getElementsByClassName('staticdispo');
+                        let libre=document.getElementsByClassName('staticlibre');
+                        for(i=0;i<=dispo.length;i++){
+                          if(dispo[i].value=="oui") {
+                            dispo[i].classList.add('classdispooui')
+                            /*for(j=0;j<=libre.length;j++){
+                              x=new Date().getMonth()
+                              d=parseInt(x+1);
+                              month=0+d.toString()
+                              libre[i].value=new Date().getFullYear()+'/'+ month +'/'+ new Date().getDate()
+                            }*/
+
+                          }
+                          else{
+                            dispo[i].classList.add('classdisponon')
+                          }
+                        }
+            </script>
+            
+
+
+
+            <script src="js/bootstrap.bundle.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/form-validation.js"></script>
+            <script src="js/script.js"></script>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="js/jquery.waypoints.min.js"></script>
+            <script src="js/jquery.stellar.min.js"></script>
+            <script src="js/owl.carousel.min.js"></script>
+            <script src="js/jquery.magnific-popup.min.js"></script>
+            <script src="js/aos.js"></script>
+            <script src="js/jquery.animateNumber.min.js"></script>
+             <script src="js/scrollax.min.js"></script>
+            <script src="js/main.js"></script>
+</body>
+</html>
